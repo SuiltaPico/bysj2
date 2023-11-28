@@ -20,20 +20,21 @@
     "test:main": "vitest run -r packages/main --passWithNoTests",
     "test:preload": "vitest run -r packages/preload --passWithNoTests",
     "test:renderer": "vitest run -r packages/renderer --passWithNoTests",
-    "watch": "node scripts/watch.mjs",
-    "lint": "eslint . --ext js,mjs,cjs,ts,mts,cts,vue",
+    "dev": "node scripts/watch.mjs",
+    "lint": "eslint . --ext js,mjs,cjs,ts,mts,cts",
     "typecheck:main": "tsc --noEmit -p packages/main/tsconfig.json",
     "typecheck:preload": "tsc --noEmit -p packages/preload/tsconfig.json",
-    "typecheck:renderer": "vue-tsc --noEmit -p packages/renderer/tsconfig.json",
+    "typecheck:renderer": "tsc --noEmit -p packages/renderer/tsconfig.json",
     "typecheck": "npm run typecheck:main && npm run typecheck:preload && npm run typecheck:renderer",
     "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 electron scripts/update-electron-vendors.mjs",
-    "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,mts,cts,vue,json}\""
+    "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,mts,cts,json}\""
   },
   "devDependencies": {
+    "@iconify-json/tabler": "^1.1.100",
+    "@solidjs/router": "^0.9.1",
     "@types/node": "20.9.0",
     "@typescript-eslint/eslint-plugin": "6.11.0",
-    "@vitejs/plugin-vue": "4.4.1",
-    "@vue/test-utils": "2.4.2",
+    "@unocss/preset-icons": "^0.57.7",
     "cross-env": "7.0.3",
     "electron": "27.1.0",
     "electron-builder": "24.6.4",
@@ -44,11 +45,11 @@
     "playwright": "1.39.0",
     "simple-git-hooks": "2.9.0",
     "typescript": "5.2.2",
+    "unocss": "^0.57.7",
     "unplugin-auto-expose": "0.0.5",
     "vite": "4.5.0",
-    "vitest": "0.34.6",
-    "vue": "3.3.4",
-    "vue-tsc": "1.8.22"
+    "vite-plugin-solid": "^2.7.2",
+    "vitest": "0.34.6"
   },
   "dependencies": {
     "electron-updater": "6.1.4"
