@@ -1,10 +1,13 @@
 /* eslint-env node */
 
-import {chrome} from '../../.electron-vendors.cache.json';
-import vue from '@vitejs/plugin-vue';
-import {renderer} from 'unplugin-auto-expose';
-import {join} from 'node:path';
-import {injectAppVersion} from '../../version/inject-app-version-plugin.mjs';
+import { chrome } from '../../.electron-vendors.cache.json';
+// import vue from '@vitejs/plugin-vue';
+import { renderer } from 'unplugin-auto-expose';
+import { join } from 'node:path';
+import { injectAppVersion } from '../../version/inject-app-version-plugin.mjs';
+import { defineConfig } from 'vite';
+import Solid from 'vite-plugin-solid';
+import UnoCSS from 'unocss/vite';
 
 const PACKAGE_ROOT = __dirname;
 const PROJECT_ROOT = join(PACKAGE_ROOT, '../..');
@@ -13,7 +16,7 @@ const PROJECT_ROOT = join(PACKAGE_ROOT, '../..');
  * @type {import('vite').UserConfig}
  * @see https://vitejs.dev/config/
  */
-const config = {
+const config = defineConfig({
   mode: process.env.MODE,
   root: PACKAGE_ROOT,
   envDir: PROJECT_ROOT,
@@ -39,16 +42,18 @@ const config = {
     emptyOutDir: true,
     reportCompressedSize: false,
   },
-  test: {
-    environment: 'happy-dom',
-  },
+  // test: {
+  //   environment: 'happy-dom',
+  // },
   plugins: [
-    vue(),
+    // vue(),
+    Solid(),
+    UnoCSS(),
     renderer.vite({
       preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts'),
     }),
     injectAppVersion(),
   ],
-};
+});
 
 export default config;
