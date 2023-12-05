@@ -1,11 +1,11 @@
 /* eslint-env node */
 
+import { defineConfig } from 'vite';
+
 import { chrome } from '../../.electron-vendors.cache.json';
-// import vue from '@vitejs/plugin-vue';
 import { renderer } from 'unplugin-auto-expose';
 import { join } from 'node:path';
 import { injectAppVersion } from '../../version/inject-app-version-plugin.mjs';
-import { defineConfig } from 'vite';
 import Solid from 'vite-plugin-solid';
 import UnoCSS from 'unocss/vite';
 
@@ -46,7 +46,6 @@ const config = defineConfig({
   //   environment: 'happy-dom',
   // },
   plugins: [
-    // vue(),
     Solid(),
     UnoCSS(),
     renderer.vite({

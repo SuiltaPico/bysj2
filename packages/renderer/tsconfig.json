@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "esnext",
     "target": "esnext",
-    "sourceMap": false,
+    "sourceMap": true,
     "moduleResolution": "Node",
     "skipLibCheck": true,
     "strict": true,
@@ -10,7 +10,7 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": [
-      "node",
+      "node"
     ],
     "baseUrl": ".",
     "paths": {
@@ -25,12 +25,13 @@
       "ESNext",
       "dom",
       "dom.iterable"
-    ],
+    ]
   },
   "include": [
-    "src/**/*.vue",
     "src/**/*.ts",
     "src/**/*.tsx",
+    "src/*.ts",
+    "src/*.tsx",
     "types/**/*.d.ts",
     "../../types/**/*.d.ts"
   ],
