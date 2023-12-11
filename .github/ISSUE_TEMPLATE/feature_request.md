@@ -1,20 +1,20 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: 功能请求
+about: 为这个项目提出一个想法
 title: ''
 labels: enhancement
-assignees: cawa-93
+assignees: suiltapico
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**您的功能请求是否与问题有关？请描述一下。**
+清晰而简明地描述问题是什么。例如：每当我遇到...时，我总是感到沮丧。
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**描述您希望的解决方案**
+清晰而简明地描述您希望发生的事情。
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**描述您考虑过的替代方案**
+清晰而简明地描述您考虑过的任何替代解决方案或功能。
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**其他背景信息**
+在这里添加有关功能请求的任何其他背景信息或屏幕截图。
