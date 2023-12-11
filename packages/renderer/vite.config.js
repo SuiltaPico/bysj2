@@ -45,7 +45,9 @@ const config = {
   },
   plugins: [
     Solid(),
-    UnoCSS(),
+    UnoCSS({
+      "configFile": "./uno.config.ts"
+    }),
     renderer.vite({
       preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts'),
     }),

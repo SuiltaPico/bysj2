@@ -1,0 +1,12 @@
+.ce-block__content {
+  max-width: 100%;
+  padding-right: 52px;
+}
+
+.ce-block__content::selection {
+  background-color: blue;
+}
+
+.ce-toolbar{
+  display: none;
+}

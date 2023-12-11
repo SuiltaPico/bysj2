@@ -1,7 +1,9 @@
 {
-  "name": "vite-electron-builder",
+  "name": "mausia",
   "description": "Secure boilerplate for Electron app based on Vite",
   "version": "1.0.2",
+  "appId": "com.mauchise.mausia",
+  "productName": "Mausia",
   "private": true,
   "author": {
     "email": "kozackunisoft@gmail.com",
@@ -30,7 +32,9 @@
     "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,mts,cts,json}\""
   },
   "devDependencies": {
+    "@iconify-icon/solid": "^1.0.8",
     "@iconify-json/tabler": "^1.1.100",
+    "@microsoft/fast-foundation": "^2.49.4",
     "@solidjs/router": "^0.9.1",
     "@types/node": "20.9.0",
     "@typescript-eslint/eslint-plugin": "6.11.0",
@@ -52,6 +56,16 @@
     "vitest": "0.34.6"
   },
   "dependencies": {
-    "electron-updater": "6.1.4"
+    "@editorjs/editorjs": "^2.28.2",
+    "@editorjs/paragraph": "^2.11.3",
+    "@fluentui/web-components": "^2.5.16",
+    "electron-updater": "6.1.4",
+    "reflect-metadata": "^0.1.14",
+    "solid-element": "^1.8.0",
+    "solid-js": "^1.8.7",
+    "solid-transition-group": "^0.2.3",
+    "sqlite3": "^5.1.6",
+    "type-fest": "^4.8.3",
+    "typeorm": "^0.3.17"
   }
 }

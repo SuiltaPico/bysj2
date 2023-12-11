@@ -1,7 +1,27 @@
 import { render } from "solid-js/web";
+import { customElement } from "solid-element";
+import {
+  fluentButton,
+  fluentTab,
+  fluentTabPanel,
+  fluentTabs,
+  fluentTextArea,
+  fluentTextField,
+  provideFluentDesignSystem,
+} from "@fluentui/web-components";
+
+provideFluentDesignSystem().register(
+  fluentButton(),
+  fluentTextField(),
+  fluentTextArea(),
+  fluentTab(),
+  fluentTabs(),
+  fluentTabPanel()
+);
+customElement("fluent-button", {}, fluentButton);
 
 import "./index.css";
-import "uno.css";
+import "virtual:uno.css";
 import "@unocss/reset/tailwind.css";
 
 import App from "./App";

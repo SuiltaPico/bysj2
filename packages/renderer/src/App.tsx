@@ -1,18 +1,16 @@
+import { Router, useRoutes } from "@solidjs/router";
 import type { Component } from "solid-js";
-import styles from "./App.module.css";
-import { Router, Route, Routes } from "@solidjs/router";
-import AIAssistant from "./components/page/AIAssistant";
-import Framwork from "./components/framework";
+import Framwork from "./components/framework/framework";
+import { routes } from "./router/routes";
 
 const App: Component = () => {
+  const Routes = useRoutes(routes);
   return (
-    <Framwork>
-      <Router>
-        <Routes>
-          <Route path="/" component={AIAssistant} />
-        </Routes>
-      </Router>
-    </Framwork>
+    <Router>
+      <Framwork>
+        <Routes />
+      </Framwork>
+    </Router>
   );
 };
 

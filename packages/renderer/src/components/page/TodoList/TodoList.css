@@ -1,0 +1,23 @@
+.todo_list_container {
+  --neutral-stroke-input-rest: linear-gradient(
+    #efefef calc(100% - 1px),
+    #aaa calc(100% - 1px),
+    #aaa
+  );
+  & .codex-editor {
+    width: 100%;
+  }
+}
+
+.item-fade-enter-active {
+  transition: opacity 0.3s;
+}
+
+.item-fade-enter,
+.item-fade-exit-to {
+  /* transform: translateX(10px); */
+  opacity: 0;
+}
+.item-fade-enter {
+  /* transform: translateX(-10px); */
+}
