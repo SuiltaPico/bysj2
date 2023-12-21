@@ -4,10 +4,23 @@
 }
 
 .left_drawer {
-  padding-left: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
+  row-gap: 8px;
+
 
   & > fluent-tab {
     padding-left: 4px;
+    transition: background ease 0.15s;
+    margin-top: 4px;
+
+    &:hover {
+      background: #0001;
+    }
+
+    &[aria-selected="true"] {
+      background: #4081;
+    }
   }
 
   background: rgb(243, 242, 243);

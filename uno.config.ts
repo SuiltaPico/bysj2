@@ -1,17 +1,37 @@
-import { defineConfig } from 'unocss';
-import presetUno from '@unocss/preset-uno';
-import presetIcons from '@unocss/preset-icons';
+import { defineConfig } from "unocss";
+import presetIcons from "@unocss/preset-icons";
+import presetWind from "@unocss/preset-wind";
 
 export default defineConfig({
-  // ...UnoCSS options
   presets: [
-    presetUno(),
+    // ...UnoCSS options
+    presetWind({}),
     presetIcons({
-      /* options */
+      // prefix: "i-",
       collections: {
-        tabler: () =>
-          import('@iconify-json/tabler/icons.json').then((i) => i.default),
+        tabler: () => import("@iconify-json/tabler/icons.json"),
       },
     }),
+  ],
+  safelist: [
+    "bg-white",
+    "flex-row",
+    "flex-col",
+    "gap-1",
+    "gap-2",
+    "gap-3",
+    "justify-normal",
+    "justify-start",
+    "justify-end",
+    "justify-center",
+    "justify-between",
+    "justify-around",
+    "justify-evenly",
+    "justify-stretch",
+    "items-start",
+    "items-end",
+    "items-center",
+    "items-baseline",
+    "items-stretch",
   ],
 });

@@ -51,7 +51,7 @@ const LeftDrawer: ParentComponent<{}> = (props) => {
         {(it) => {
           return (
             <Show when={it.showing}>
-              <fluent-tab-panel></fluent-tab-panel>
+              <fluent-tab-panel style={{ display: "none" }}></fluent-tab-panel>
             </Show>
           );
         }}

@@ -7,6 +7,9 @@
     "skipLibCheck": true,
     "strict": true,
     "isolatedModules": true,
+    "strictPropertyInitialization": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "types": ["node"],
     "baseUrl": ".",
     "paths": {
