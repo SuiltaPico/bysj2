@@ -7,11 +7,13 @@ async function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
+      // nodeIntegration: false,
+      nodeIntegration: true,
+      // contextIsolation: true,
+      contextIsolation: false,
       sandbox: false, // Sandbox disabled because the demo of preload script depend on the Node.js api
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like an iframe or Electron's BrowserView. @see https://www.electronjs.org/docs/latest/api/webview-tag#warning
-      preload: join(app.getAppPath(), "packages/preload/dist/index.cjs"),
+      // preload: join(app.getAppPath(), "packages/preload/dist/index.cjs"),
     },
   });
 
@@ -30,6 +32,8 @@ async function createWindow() {
       browserWindow?.webContents.openDevTools();
     }
   });
+
+
 
   /**
    * Load the main page of the main window.

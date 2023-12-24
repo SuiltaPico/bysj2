@@ -1,8 +1,9 @@
+import "reflect-metadata"
 import { app } from "electron";
 import "./security-restrictions";
-import { restoreOrCreateWindow } from "/@/mainWindow";
+import "./IPCHandler";
+import { restoreOrCreateWindow } from "./MainWindow";
 import { platform } from "node:process";
-import "./db"
 
 /**
  * Prevent electron from running multiple instances.

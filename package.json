@@ -46,13 +46,16 @@
     "unocss": "^0.57.7",
     "unplugin-auto-expose": "0.0.5",
     "vite": "4.5.0",
+    "vite-plugin-commonjs-externals": "^0.1.4",
     "vite-plugin-solid": "^2.7.2",
     "vitest": "0.34.6"
   },
   "dependencies": {
     "@editorjs/editorjs": "^2.28.2",
     "@editorjs/paragraph": "^2.11.3",
+    "@electron/remote": "^2.1.1",
     "@fluentui/web-components": "^2.5.16",
+    "dayjs": "^1.11.10",
     "electron-updater": "6.1.4",
     "reflect-metadata": "^0.1.14",
     "solid-element": "^1.8.0",

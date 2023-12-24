@@ -1,16 +1,19 @@
 /* eslint-env node */
 
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
-import { chrome } from '../../.electron-vendors.cache.json';
-import { renderer } from 'unplugin-auto-expose';
-import { join } from 'node:path';
-import { injectAppVersion } from '../../version/inject-app-version-plugin.mjs';
-import Solid from 'vite-plugin-solid';
-import UnoCSS from 'unocss/vite';
+import { chrome } from "../../.electron-vendors.cache.json";
+import { renderer } from "unplugin-auto-expose";
+import { join } from "node:path";
+import { injectAppVersion } from "../../version/inject-app-version-plugin.mjs";
+import Solid from "vite-plugin-solid";
+import UnoCSS from "unocss/vite";
+import CommonjsExternals from "vite-plugin-commonjs-externals";
 
 const PACKAGE_ROOT = __dirname;
-const PROJECT_ROOT = join(PACKAGE_ROOT, '../..');
+const PROJECT_ROOT = join(PACKAGE_ROOT, "../..");
+
+const externals = ["path", "electron", "typeorm"];
 
 /**
  * @type {import('vite').UserConfig}
@@ -22,10 +25,10 @@ const config = defineConfig({
   envDir: PROJECT_ROOT,
   resolve: {
     alias: {
-      '/@/': join(PACKAGE_ROOT, 'src') + '/',
+      "/@/": join(PACKAGE_ROOT, "src") + "/",
     },
   },
-  base: '',
+  base: "",
   server: {
     fs: {
       strict: true,
@@ -34,10 +37,10 @@ const config = defineConfig({
   build: {
     sourcemap: true,
     target: `chrome${chrome}`,
-    outDir: 'dist',
-    assetsDir: '.',
+    outDir: "dist",
+    assetsDir: ".",
     rollupOptions: {
-      input: join(PACKAGE_ROOT, 'index.html'),
+      input: join(PACKAGE_ROOT, "index.html"),
     },
     emptyOutDir: true,
     reportCompressedSize: false,
@@ -46,15 +49,21 @@ const config = defineConfig({
   //   environment: 'happy-dom',
   // },
   plugins: [
+    CommonjsExternals({
+      externals
+    }),
     Solid(),
     UnoCSS({
-      "configFile": "./uno.config.ts"
+      configFile: "./uno.config.ts",
     }),
     renderer.vite({
-      preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts'),
+      preloadEntry: join(PACKAGE_ROOT, "../preload/src/index.ts"),
     }),
     injectAppVersion(),
   ],
+  optimizeDeps: {
+    exclude: externals,
+  },
 });
 
 export default config;

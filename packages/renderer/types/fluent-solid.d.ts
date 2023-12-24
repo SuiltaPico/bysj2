@@ -42,6 +42,12 @@ type AllFluentComponent = {
     > &
       JSX.HTMLAttributes<HTMLDivElement>
   >;
+} & {
+  "fluent-checkbox": ParentProps<
+    Partial<{
+      checked: boolean;
+    }>
+  >;
 };
 
 declare module "solid-js" {
