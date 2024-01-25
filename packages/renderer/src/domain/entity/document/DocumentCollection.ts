@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  JoinTable,
+} from "typeorm";
 import { Document } from "/@/domain/entity/document/Document";
 import { TodoDocument } from "../todo/TodoDocument";
 
@@ -10,7 +16,9 @@ export class DocumentCollection {
   @Column("text")
   name!: string;
 
-  @ManyToMany(() => TodoDocument, (document) => document.document_collections)
+  @ManyToMany(() => TodoDocument, (document) => document.document_collections, {
+    eager: true,
+  })
   @JoinTable()
   documents!: Document[];
 }

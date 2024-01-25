@@ -1,19 +1,22 @@
+import { Icon } from "@iconify-icon/solid";
 import {
   Component,
+  For,
   Show,
   createMemo,
   createSignal,
   onCleanup,
   onMount,
-  useTransition,
 } from "solid-js";
-import { Column, Row } from "../../base/Flex";
-import { Icon } from "@iconify-icon/solid";
-import "./TodoListPage.css";
-import Editorjs, { EditorjsProps } from "../../base/editorjs/Editorjs";
-import { display_none_or } from "/@/common/style";
 import { Transition } from "solid-transition-group";
+import { Column, Row } from "../../base/Flex";
+import Editorjs, { EditorjsProps } from "../../base/editorjs/Editorjs";
+import "./TodoListPage.css";
 import { use_app_store } from "/@/app/state/app";
+import { display_none_or } from "/@/common/style";
+import { DocumentService } from "/@/domain/service/DocumentService";
+import { TodoItemEt } from "/@/domain/entity/todo/TodoItem";
+import { TinyTodoItem } from "./TodoItem/TinyTodoItem";
 
 interface NewTodoPannelProps {}
 
@@ -137,20 +140,35 @@ const TodoListPreview: Component<TodoListPreviewProps> = (
   props: TodoListPreviewProps
 ) => {
   const [app_store, set_app_store] = use_app_store();
+  const [todo_list, set_todo_list] = createSignal<TodoItemEt[]>([]);
 
   async function init() {
     const todo_service = await app_store.service_pms.todo;
+    const document_service = await app_store.service_pms.document;
     const todo_preview = await todo_service.todo_preview.get({
       page: 0,
       page_size: 5,
+      // document_service,
     });
+    set_todo_list(todo_preview);
+    // console.log(todo_preview);
   }
 
   init();
 
   return (
-    <Column class="bg-zinc-100">
-      <Row>待办速览</Row>
+    <Column class="rounded bg-zinc-100 p-3 min-w-[500px] w-full" gap={2}>
+      <Row class="text-gray-800 text-xs w-full" items="center" gap={1}>
+        <Icon class="text-sm" icon="tabler-list-numbers"></Icon>
+        待办速览
+      </Row>
+      <Column>
+        <For each={todo_list()}>
+          {(it) => {
+            return <TinyTodoItem todo_item={it}></TinyTodoItem>;
+          }}
+        </For>
+      </Column> v
     </Column>
   );
 };

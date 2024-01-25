@@ -1,10 +1,22 @@
-import { DataSource } from "typeorm";
+import { DataSource, SelectQueryBuilder } from "typeorm";
 import { gen_sevice_remove } from "/@/common/utils/service_generator";
 import { Document } from "../entity/document/Document";
 import { TodoDocument } from "../entity/todo/TodoDocument";
 
 export function create_DocumentService(data_source: DataSource) {
+  function query_build_linker(
+    name: string,
+    query_build: SelectQueryBuilder<any>
+  ) {
+    return query_build
+      .leftJoinAndSelect(`${name}.tags`, "tags")
+      .leftJoinAndSelect(
+        `${name}.document_collections`,
+        "document_collections"
+      );
+  }
   const result = {
+    query_build_linker,
     create<T extends Partial<Document>, V extends typeof Document>(option: {
       initial?: T;
       no_save?: boolean;

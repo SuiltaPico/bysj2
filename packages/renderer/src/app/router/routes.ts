@@ -11,6 +11,7 @@ export type AppRouteDefinition = RouteDefinition & {
   showing?: boolean;
   ref?: AppRouteDefinition;
   icon?: string;
+  hidden?: boolean;
 };
 
 const ai_assistant_route = {
@@ -39,6 +40,7 @@ export const routes: AppRouteDefinition[] = [
     path: "/project",
     component: Project,
     icon: "chart-arrows",
+    hidden: true,
   },
   {
     name: "文档管理",

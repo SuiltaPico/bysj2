@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import type { DocumentContentType } from "../document/Document";
-import { TodoItem } from "./TodoItem";
+import { TodoItemEt } from "./TodoItem";
 import { Tag } from "../tag/Tag";
 import { DocumentCollection } from "../document/DocumentCollection";
 
@@ -30,7 +30,7 @@ export class TodoDocument {
   content!: string;
 
   /** 标签组。 */
-  @ManyToOne(() => Tag)
+  @ManyToMany(() => Tag)
   tags!: Tag[];
 
   @ManyToMany(
@@ -40,6 +40,6 @@ export class TodoDocument {
   @JoinTable()
   document_collections!: DocumentCollection[];
 
-  @OneToOne(() => TodoItem, (item) => item.document)
-  todo_item: TodoItem | undefined;
+  @OneToOne(() => TodoItemEt, (item) => item.document)
+  todo_item: TodoItemEt | undefined;
 }

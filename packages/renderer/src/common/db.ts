@@ -1,13 +1,19 @@
-import { DataSource, DataSourceOptions } from "typeorm";
-import { IPCApi } from "./IPCApi";
 import type Process from "process";
-import { TodoDocument } from "../domain/entity/todo/TodoDocument";
-import { TodoItem } from "../domain/entity/todo/TodoItem";
-import { DocumentCollection } from "../domain/entity/document/DocumentCollection";
-import { Document } from "../domain/entity/document/Document";
+import { DataSource, DataSourceOptions } from "typeorm";
+import { KlCollectionEt } from "../domain/entity/kb/KlCollection";
+import {
+  KlItemORMEt,
+  KlItem_entities,
+  MountedKlItemContentEt,
+  TextKlItemContentEt,
+} from "../domain/entity/kb/KlItem";
+import { KlSv } from "../domain/entity/kb/KlSv";
 import { Tag } from "../domain/entity/tag/Tag";
+import { TodoDocument } from "../domain/entity/todo/TodoDocument";
 import { TodoEnableCondition } from "../domain/entity/todo/TodoEnableCondition";
+import { TodoItemEt } from "../domain/entity/todo/TodoItem";
 import { TodoTriggerEvent } from "../domain/entity/todo/TodoTriggerEvent";
+import { IPCApi } from "./IPCApi";
 const process = require("process") as typeof Process;
 
 async function init() {
@@ -15,13 +21,15 @@ async function init() {
     type: "sqlite",
     database: `${await IPCApi.app.getPath("userData")}/data/main.sqlite`,
     entities: [
-      TodoItem,
-      TodoDocument,
-      TodoEnableCondition,
-      TodoTriggerEvent,
+      // TodoItemEt,
+      // TodoDocument,
+      // TodoEnableCondition,
+      // TodoTriggerEvent,
       // Document,
-      DocumentCollection,
-      Tag,
+      // DocumentCollection,
+      // Tag,
+      ...KlItem_entities,
+      KlCollectionEt,
     ],
     logging: true,
     synchronize: true,
@@ -34,3 +42,13 @@ async function init() {
 }
 
 export const data_source_promise = init();
+
+data_source_promise.then((ds) => {
+  // @ts-ignore
+  window.sv = new KlSv({
+    collection_repo: ds.getRepository(KlCollectionEt),
+    item_orm_repo: ds.getRepository(KlItemORMEt),
+    mounted_item_repo: ds.getRepository(MountedKlItemContentEt),
+    text_item_repo: ds.getRepository(TextKlItemContentEt),
+  });
+});

@@ -33,7 +33,8 @@ export abstract class Document {
 
   @ManyToMany(
     () => DocumentCollection,
-    (document_collection) => document_collection.documents
+    (document_collection) => document_collection.documents,
+    { eager: true }
   )
   @JoinTable()
   document_collections!: DocumentCollection[];
